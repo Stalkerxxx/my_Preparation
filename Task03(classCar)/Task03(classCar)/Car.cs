@@ -4,17 +4,19 @@ namespace Task03_classCar_
 {
     class Car
     {
-        public string Model { get; set; }
-        public string Color { get; set; }
-        public double Weight { get; set; }
-        public int Speed { get; set; }
-        public Car(string model, string color, double weight, int speed)
+        private string Model { get; set; }
+        private string Color { get; set; }
+        private double Weight { get; set; }
+        private int Speed { get; set; }
+       
+        public Car(string _model, string _color, double _weight, int _speed)
         {
-            Model = model;
-            Color = color;
-            Weight = weight;
-            Speed = speed;
+            Model = _model;
+            Color = _color;
+            Weight = _weight;
+            Speed = _speed;
         }
+        
         public void PrintToConsole()
         {
             Console.WriteLine($"Model: {Model}, color: {Color}, weight: {Weight}, speed: {Speed}");
