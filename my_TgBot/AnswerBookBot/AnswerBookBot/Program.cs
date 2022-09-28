@@ -11,8 +11,10 @@ namespace AnswerBookBot
 {
     class Program
     {
+        // token declaration
         static ITelegramBotClient bot = new TelegramBotClient("5657253659:AAF6QyGwUmeP3uAtvUjMXtjxMKJPk3QG698");
-        public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        public static async Task HandleUpdateAsync(ITelegramBotClient botClient,
+            Update update, CancellationToken cancellationToken)
         {
             // Некоторые действия
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(update));
@@ -21,21 +23,27 @@ namespace AnswerBookBot
                 var message = update.Message;
                 if (message.Text.ToLower() == "/start")
                 {
-                    await botClient.SendTextMessageAsync(message.Chat, "Добро пожаловать, любовь, это мой первый ботик!");
+                    await botClient.SendTextMessageAsync(message.Chat, 
+                        "Добро пожаловать, это мой бот!");
                     return;
                 }
                 if (message.Text.ToLower() == "/коля")
                 {
-                    await botClient.SendTextMessageAsync(message.Chat, "Да это я перейди по ссылке: https://duckduckgo.com/?q=%D0%B6%D0%BE%D0%BF%D0%B0&t=ffab&iax=images&ia=images");
+                    await botClient.SendTextMessageAsync(message.Chat, "Меня зовут Коля, я помогу тебе))");
                     return;
                 }
-                await botClient.SendTextMessageAsync(message.Chat, "Поцелуй попи");
+                await botClient.SendTextMessageAsync(message.Chat, "Поцелуй жопу");
             }
         }
-
-        public static async Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
+        public static async Task HandleRequestsAsync(ITelegramBotClient botClient,
+            Update update, CancellationToken cancellationToken)
         {
-            // Некоторые действия
+            
+        }
+
+        public static async Task HandleErrorAsync(ITelegramBotClient botClient,
+            Exception exception, CancellationToken cancellationToken)
+        {
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(exception));
         }
 
