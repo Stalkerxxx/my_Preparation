@@ -32,14 +32,21 @@ namespace AnswerBookBot
                 if (message.Text.ToLower() == "/geometry")
                 {
                     await botClient.SendTextMessageAsync(message.Chat, "Добро пожаловать в раздел геометрия!!!\n" +
-                        "В этом разделе ты можешь считать\n" +
-                        "площади и периметры разных фигур из списка:");
+                        "Здесь ты можешь выбрать два разела\n" +
+                        "Планеметрию (геометрия на плоскости) - /planemetry\n" +
+                        "Стериометрию (геометрия в пространстве) - /stereometry");
                     // await botClient.SendTextMessageAsync(message.Chat, "Чтобы начать введите /goGeometry");
-                    await Task.Run(() => HandlePlanemetry(botClient, update, cancellationToken));
-
+                }
+                if (message.Text.ToLower() == "/planemetry")
+                {
+                    await Task.Run(() => AsyncPlanemetry.HandlePlanemetry(botClient, update));
                     return;
                 }
-
+                if (message.Text.ToLower() == "/stereometry")
+                {
+                    await Task.Run(() => AsyncStereometry.HandleStereometry(botClient, update));
+                    return;
+                }
 
                 if (message.Text.ToLower() == "/answerbook")
                 {
@@ -47,26 +54,14 @@ namespace AnswerBookBot
                         "Здесь ты сможешь по тексу задачи получить ссылку на ее решение");
                     return;
                 }
-                //await botClient.SendTextMessageAsync(message.Chat, "Поцелуй жопу");
             }
         }
-        public static async Task HandlePlanemetry(ITelegramBotClient botClient,
-           Update update, CancellationToken cancellationToken)
-        {
-            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(update));
-            if (update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
-            {
-                var message = update.Message;
-                await botClient.SendTextMessageAsync(message.Chat, "Раздел планеметрии!");    
-            }
-        }
-
         public static async Task HandleErrorAsync(ITelegramBotClient botClient,
-            Exception exception, CancellationToken cancellationToken)
+           Exception exception, CancellationToken cancellationToken)
         {
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(exception));
         }
     }
-}
+  }
     
   

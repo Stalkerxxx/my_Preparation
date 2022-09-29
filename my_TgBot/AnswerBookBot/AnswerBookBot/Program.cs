@@ -28,7 +28,6 @@ namespace AnswerBookBot
 
             Console.ReadLine();
         }
-
     }
 }
     
